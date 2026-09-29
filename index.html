@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>일차함수의 그래프 - 수업 시연</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<div class="bar" id="bar"></div>
+
+<section class="slide hero">
+ <span class="tag">중2 · Ⅳ 일차함수와 그래프</span>
+ <h1>일차함수의 그래프,<br>직선으로 만나요 📈</h1>
+ <p class="sub">천재교육 p.103~108 · 수업시연자 고홍규 · 한국외국어대학교 수학과</p>
+ <svg viewBox="0 0 360 200" style="width:100%;max-width:520px;margin:14px auto;display:block">
+ <g stroke="var(--grid)"><path d="M0 40H360M0 80H360M0 120H360M0 160H360M60 0V200M120 0V200M180 0V200M240 0V200M300 0V200"/></g>
+ <path d="M0 100H360M180 0V200" stroke="var(--ax)" stroke-width="2"/>
+ <path d="M20 180L340 20" stroke="var(--c1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="400" stroke-dashoffset="400"><animate attributeName="stroke-dashoffset" from="400" to="0" dur="2.5s" repeatCount="indefinite"/></path>
+ <path d="M20 200L340 40" stroke="var(--c2)" stroke-width="4" stroke-dasharray="8 8" opacity=".7"><animate attributeName="stroke-dashoffset" to="-64" dur="2s" repeatCount="indefinite"/></path>
+ <circle cx="180" cy="100" r="8" fill="var(--c4)"><animate attributeName="r" values="6;14;6" dur="1.6s" repeatCount="indefinite"/></circle>
+ <text x="-14" y="10" font-size="34"><animateMotion dur="2.5s" repeatCount="indefinite" path="M20 180L340 20"/>🚀</text>
+ <text x="300" y="190" font-size="22" fill="var(--c1)" font-weight="900">y=2x+1</text>
+</svg>
+ <button onclick="go(1)">수업 시작 ▶</button>
+</section>
+
+<section class="slide">
+ <span class="tag">학습 목표</span><h2>오늘 우리가 할 일</h2>
+ <div class="goal"><i style="background:var(--c1)">📍</i>y=ax+b의 그래프를 <b>그릴 수 있다</b></div>
+ <div class="goal"><i style="background:var(--c2)">✏️</i>그래프를 <b>두 점</b>으로 그릴 수 있다</div>
+ <div class="goal"><i style="background:var(--c3)">⬆️</i>y=ax의 그래프를 <b>b만큼 평행이동</b> 해석</div>
+</section>
+
+<section class="slide">
+ <span class="tag">복습</span><h2>함수 기계 ⚙️</h2><p class="sub">x를 넣으면 y가 하나만 나와요. 규칙: y = 2x + 1</p><div class="card"><div class="machine"><div class="io" id="fi"></div><span class="ar">➜</span><div class="gear">⚙️</div><span class="ar">➜</span><div class="io o2" id="fo"></div></div><input type="range" id="fx" min="-3" max="3" value="1"><p class="sub" style="text-align:center">y=ax+b (a≠0) 꼴 → <b>일차함수</b></p></div>
+</section>
+
+<section class="slide">
+ <span class="tag">생활 속 일차함수</span><h2>물통 채우기 🪣</h2><p class="sub">처음 1L, 1분마다 2L씩 → y = 2x + 1</p><div class="grid"><div class="card"><div class="tank"><div class="water" id="wl"></div></div><div class="big" id="wt"></div><input type="range" id="wx" min="0" max="2.5" step="0.5" value="1"></div><div class="card"><svg class="g" id="gw" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">그리는 순서</span><h2>그래프 4단계 레시피 🍳</h2><ol id="steps"><li>📋 x, y 값 표 만들기</li><li>📍 순서쌍을 좌표평면에 점 찍기</li><li>📏 점들을 곧게 이어 직선 긋기</li><li>🔍 다른 점도 직선 위에 있는지 확인</li></ol><button onclick="dstep()">다음 단계 ▶</button><button class="o" onclick="ds=0;dstep();ds=0;dstep2()">↺</button>
+</section>
+
+<section class="slide">
+ <span class="tag">도입 · 그래프 그리기(1)</span><h2>y = 2x + 1</h2>
+ <p class="sub">x값마다 y값을 구해 점을 찍고, 이어 보세요.</p>
+ <div class="grid"><div class="card"><div id="t1"></div><button onclick="st(1)">다음 점 ▶</button><button class="o" onclick="rs(1)">↺</button></div>
+ <div class="card"><svg class="g" id="g1" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">탐구 1</span><h2>y = −2x + 3</h2>
+ <p class="sub">기울기가 음수이면 어떤 모양일까요?</p>
+ <div class="grid"><div class="card"><div id="t2"></div><button class="alt" onclick="st(2)">다음 점 ▶</button><button class="o" onclick="rs(2)">↺</button></div>
+ <div class="card"><svg class="g" id="g2" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">기울기 탐구</span><h2>a의 부호에 따라 모양이 달라져요</h2><p class="sub">버튼을 눌러 y=ax 를 겹쳐 그려 보세요.</p><div class="grid"><div class="card"><button onclick="addA(2)">y=2x</button><button class="ok" onclick="addA(1)">y=x</button><button class="alt" onclick="addA(-2)">y=−2x</button><button style="background:var(--c4)" onclick="addA(-1)">y=−x</button><button class="o" onclick="clrA()">지우기</button><p class="big" id="ms"></p></div><div class="card"><svg class="g" id="gs" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">그래프 그리기(2)</span><h2>y=2x 와 y=2x+3 비교</h2>
+ <p class="sub">슬라이더로 b를 바꿔 보세요. 그래프는 어떻게 움직일까요?</p>
+ <div class="grid"><div class="card">
+  <div class="big" id="e3" style="color:var(--c2)"></div>
+  <input type="range" id="s3" min="-4" max="5" value="3" step="1">
+  <table id="t3"></table>
+  <p class="sub" id="m3" style="text-align:center;font-weight:800"></p></div>
+ <div class="card"><svg class="g" id="g3" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">탐구 2</span><h2>두 점만 있으면 충분!</h2>
+ <p class="sub">y = −2x + 1 : x=0, x=1 일 때의 점을 찾아요.</p>
+ <div class="grid"><div class="card">
+  <div class="big">(0, <span style="color:var(--c3)">1</span>) &nbsp; (1, <span style="color:var(--c2)">−1</span>)</div>
+  <button class="ok" onclick="two(1)">① x=0 → y절편</button><button class="alt" onclick="two(2)">② x=1</button><button onclick="two(3)">③ 직선 긋기</button><button class="o" onclick="two(0)">↺</button>
+  <p class="sub">y절편 b = 그래프가 y축과 만나는 점의 y좌표</p></div>
+ <div class="card"><svg class="g" id="g4" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">점 판별</span><h2>직선 위의 점은? 🎯</h2><p class="sub">y = 2x + 1 에 x, y를 대입해 확인!</p><div class="grid"><div class="card"><b>직선 위에 있는 점은?</b><div id="q4"></div><div class="fb"></div><p class="sub">x=2 → y=2·2+1=5 ≠ 4</p></div><div class="card"><svg class="g" id="gp" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">직접 해보기 LAB</span><h2>y = ax + b 만들기</h2>
+ <div class="grid"><div class="card">
+  <div class="big" id="e5"></div>
+  <div style="text-align:center"><span class="pill" style="background:var(--c1)" id="pa"></span><span class="pill" style="background:var(--c3)" id="pb"></span></div>
+  <p>기울기 a <input type="range" id="a5" min="-4" max="4" step="0.5" value="1"></p>
+  <p>y절편 b <input type="range" id="b5" min="-5" max="5" step="1" value="0"></p></div>
+ <div class="card"><svg class="g" id="g5" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">모둠 활동 ⏱</span><h2>y = −x + 2 를 그려라!</h2><p class="sub">두 점을 찾아 그래프를 그려 보세요. (3분)</p><div class="grid"><div class="card"><div class="big" id="tm" style="font-size:64px">3:00</div><button onclick="startT()">타이머 시작</button><button class="ok" onclick="G('gm',[{a:-1,b:2,c:'var(--c2)'}],[[0,2,'var(--c3)'],[1,1,'var(--c2)']])">정답 공개</button></div><div class="card"><svg class="g" id="gm" viewBox="0 0 360 360"></svg></div></div>
+</section>
+
+<section class="slide" data-b="1">
+ <span class="tag">정리</span><h2>오늘의 핵심 3줄</h2>
+ <div class="goal"><i style="background:var(--c1)">1</i>y=ax+b의 그래프는 <b>직선</b></div>
+ <div class="goal"><i style="background:var(--c2)">2</i>표로 점을 찍거나 <b>두 점</b>을 이으면 그릴 수 있다</div>
+ <div class="goal"><i style="background:var(--c3)">3</i>y=ax+b는 y=ax를 y축으로 <b>b만큼 평행이동</b></div>
+</section>
+
+<section class="slide">
+ <span class="tag">형성평가</span><h2>확인 퀴즈 ✅</h2>
+ <div class="card q"><b>Q1. y=3x−2 의 y절편은?</b><br><div id="q1"></div><div class="fb"></div></div>
+ <div class="card q"><b>Q2. y=−x+4 의 그래프가 지나는 점은?</b><br><div id="q2"></div><div class="fb"></div></div>
+ <div class="card q"><b>Q3. y=−2x+5 의 그래프 모양은?</b><br><div id="q5"></div><div class="fb"></div></div>
+ <div class="card q"><b>Q4. y=2x+1 을 y축 방향으로 3만큼 평행이동하면?</b><br><div id="q3"></div><div class="fb"></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">마무리</span><h1>고맙습니다 🙌</h1><p class="sub">다음 시간: 기울기와 x절편으로 그래프 그리기</p><button onclick="show(0)">처음으로</button>
+</section>
+
+<div class="nav"><button class="o" onclick="go(-1)">◀ 이전</button><span id="pg"></span><button onclick="go(1)">다음 ▶</button></div>
+
+<script src="script.js"></script></body></html>
